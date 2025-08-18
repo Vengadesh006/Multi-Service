@@ -1,0 +1,33 @@
+:root {
+  --color: #f57c20;
+  --bg-color: #ffffff;
+}
+
+/* Logo */
+.navbar-img {
+  width: auto;
+  height: 60px;
+  object-fit: cover;
+}
+
+/* Navbar links container */
+.navbar-list {
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  backdrop-filter: blur(5px) !important ;
+}
+
+/* Navbar links */
+.navbar-list .nav-link {
+    color: #141414;
+    font-size: 1rem;
+    font-weight: 300;
+    transition: all 0.3s ease;
+}
+
+.navbar-list .nav-link:hover {
+  color: var(--color);
+  border-bottom: 2px solid var(--color);
+}
+
+

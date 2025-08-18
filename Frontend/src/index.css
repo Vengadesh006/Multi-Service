@@ -1,0 +1,11 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+* {
+    font-family: "Outfit", sans-serif;
+}
+
+:root{
+    --fontColor : #ffffff;
+    --bgColor : linear-gradient(to right, #ffffff, #e03131 )
+}

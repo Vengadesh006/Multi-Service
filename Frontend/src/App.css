@@ -1,0 +1,8 @@
+.img-show {
+    background-image: url(./assets/work.jpg);
+    width: 100%;
+    height: 50vh;
+    background-position: center ;
+    background-size: cover;
+    filter: saturate(3);
+}

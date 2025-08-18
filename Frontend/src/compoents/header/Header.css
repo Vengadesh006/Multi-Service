@@ -1,0 +1,9 @@
+.img-align img{
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+}
+.bg-container{
+    background: var(--color) ;
+    border-radius: 2rem;
+}
