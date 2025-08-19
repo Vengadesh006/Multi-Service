@@ -8,10 +8,12 @@ import "swiper/css/pagination"
 import { BookingSession } from './BookingSession'
 import "./Booking.css"
 import { toast } from 'react-toastify'
+import { AuthContext } from '../../App'
 
 
 export const Booking = () => {
 
+   
     const { id } = useParams()
 
     const [serviceId, setServiceId] = useState(null)
@@ -103,6 +105,8 @@ export const Booking = () => {
 
         <>
             <div className="container">
+
+
                 <div className="card mb-3 border-0" style={{ maxWidth: "740px" }} >
                     <div className="row g-3 align-items-center ">
                         <div className="col-md-4">
@@ -122,7 +126,7 @@ export const Booking = () => {
                                         -
                                     </button>
                                 </div>
-                                <button className='btn btn-code' onClick={() => add(serviceData)}  >
+                                <button className='btn btn-outline-danger' onClick={() => add(serviceData)}  >
                                     add to card
                                 </button>
                             </div>

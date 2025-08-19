@@ -67,13 +67,13 @@ export const BookingSession = ({ serviceId, providerId, userId }) => {
           
           <div className="col-12 col-sm-6 d-flex align-items-center gap-2">
             <h6 className="m-0">Hours:</h6>
-            <button className="btn btn-warning" onClick={() => setHour(hour + 1)}>+</button>
+            <button className="btn btn-code" onClick={() => setHour(hour + 1)}>+</button>
             <span>{hour}</span>
-            <button className="btn btn-warning" onClick={() => setHour(hour > 0 ? hour - 1 : 0)}>-</button>
+            <button className="btn btn-code" onClick={() => setHour(hour > 0 ? hour - 1 : 0)}>-</button>
           </div>
           
           <div className="col-12 text-center mt-3">
-            <button className="btn btn-danger w-50" onClick={booking}>
+            <button className="btn btn-outline-danger w-50" onClick={booking}>
               Book Now
             </button>
           </div>

@@ -13,13 +13,16 @@ import { BookingDetails } from './compoents/admin/BookingDetails'
 import { ServiceDetails } from './compoents/admin/ServiceDetails'
 import { ServiceUpdate } from './compoents/admin/ServiceUpdate'
 import { AddToCard } from './compoents/Add/AddToCard'
+import { createContext } from 'react'
 
+export const AuthContext = createContext()
 
 function App() {
+  const userName = "vengadesh"
 
   return (
     <>
-      <>
+      <AuthContext.Provider value={{userName}} >
 
         <Nav />
         <div style={{ marginTop: "100px" }} />
@@ -38,7 +41,7 @@ function App() {
         </Routes>
 
         <Footer />
-      </>
+      </AuthContext.Provider>
     </>
   )
 }
