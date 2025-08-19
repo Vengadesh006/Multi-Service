@@ -16,6 +16,8 @@ export const BookingSession = ({ serviceId, providerId, userId }) => {
       return toast.warning("Please select date, time and hours first.");
     }
 
+    console.log(providerId);
+    
     const data = {
       userId,
       providerId,

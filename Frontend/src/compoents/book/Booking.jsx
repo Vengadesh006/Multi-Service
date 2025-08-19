@@ -75,10 +75,6 @@ export const Booking = () => {
 
     const userId = serviceId?.userId
 
-    console.log(userId);
-    
-
-
     const add = async (item) => {
         const sum = item?.price * count
         const payload = {
@@ -145,7 +141,9 @@ export const Booking = () => {
                                 style={{ cursor: "pointer" }}
                                 onClick={() => {
                                     setActiveIndex(i);      // set active class
-                                    setProviderId(item._id) // set selected providerId
+                                    setProviderId(item?.userId?._id) // set selected providerId
+                                    console.log(item?.userId?._id);
+                                    
                                 }}
                             >
                                 <div className="text-center pt-3">

@@ -26,6 +26,21 @@ export const AddToCard = () => {
     fetchData()
   }, [])
 
+  const deleteCard = async (id) => {
+    try{
+      const response =await API.delete(`/addtocard/${id}`)
+      toast.success(response?.data.message)
+    }
+    catch (err) {
+        console.log("form err", err?.response?.data?.message)
+        toast.error(err?.response?.data?.message || "Something went wrong")
+   
+    }
+    
+    
+    
+  }
+
   return (
     <>
       <ToastContainer />
@@ -56,7 +71,7 @@ export const AddToCard = () => {
                       <li className="list-group-item">Quantity: {item?.quantity}</li>
                       <li className="list-group-item fw-bold">Total: ₹{item?.total}</li>
                     </ul>
-                    <button className="btn btn-danger mt-auto">Remove Item</button>
+                    <button onClick={() => deleteCard(item._id)}  className="btn btn-danger mt-auto">Remove Item</button>
                   </div>
                 </div>
               </div>

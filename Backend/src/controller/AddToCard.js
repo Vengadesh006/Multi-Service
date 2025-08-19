@@ -50,3 +50,18 @@ export const Get_ALL_ADDTOCARD = async (req, res) => {
         return res.status(500).json({ message : err.message, mes : "invaild credential." }) 
     }
 }
+
+export const DELETE_CARD = async (req, res) => {
+    const id = req.params.id 
+    console.log(id);
+    
+    try{
+       const del =  await AddtoCardModel.findByIdAndDelete(id).lean()
+      
+       return res.status(202).json({ message : "delete to card." })
+    }
+    catch(err){
+        return res.status(500).json({ message : err.message, mes : "invaild credential." }) 
+    }
+
+}

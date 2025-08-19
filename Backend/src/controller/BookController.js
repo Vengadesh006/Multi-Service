@@ -14,9 +14,6 @@ export const ADD_BOOKING = async (req, res) => {
 
     const provide = await UserModel.findById(providerId).lean()
 
-    console.log(provide);
-    
-
     if (!service) return res.status(404).json({ message: "Service Not Fount" })
 
     if (!user) return res.status(404).json({ message: "User Not Fount" })
@@ -32,7 +29,6 @@ export const ADD_BOOKING = async (req, res) => {
     const end_date = new Date(start_date.getTime() + hour * 60 * 60 * 1000)
 
     const total = service.price * hour
-
 
     const solt = await AvailbilityModel.findOne({
         provider: provide._id,
@@ -51,18 +47,14 @@ export const ADD_BOOKING = async (req, res) => {
         endDate: end_date
     })
 
-    await soltVaild.save()
-
     try {
-        const verfiy = await BookModel.findOne({
+        const verify = await BookModel.findOne({
             provider: providerId,
-            $or: [
-                { startDate: { $lte: start_date } },
-                { endDate: { $gt: end_date } }
-            ]
+            startDate: { $lte: end_date },
+            endDate: { $gte: start_date }
         })
 
-        if (verfiy) return res.status(409).json({ message: 'Time already booked' })
+        if (verify) return res.status(409).json({ message: 'Time already booked' })
 
         const booking = await BookModel.create(
             [
@@ -80,6 +72,8 @@ export const ADD_BOOKING = async (req, res) => {
             ]
         );
 
+        await soltVaild.save()
+
         return res.status(202).json({ booking: booking[0] })
 
     }
@@ -92,15 +86,15 @@ export const ADD_BOOKING = async (req, res) => {
 
 
 export const GET_ALL_BOOK = async (req, res) => {
-    
-    try{
+
+    try {
         const bookInfo = await BookModel.find()
-        .populate("user", "username")
-        .populate("provider", "username")
-        .populate("service", "name")
+            .populate("user", "username")
+            .populate("provider", "username")
+            .populate("service", "name")
         return res.status(202).json(bookInfo)
     }
-    catch(err){
-        return res.status(500).json({message : err.message})
+    catch (err) {
+        return res.status(500).json({ message: err.message })
     }
 }
