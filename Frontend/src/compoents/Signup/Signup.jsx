@@ -2,8 +2,11 @@ import React, { useState } from 'react'
 import logo from "../../assets/sign.jpg"
 import API from "../Api.js"
 import {ToastContainer, toast} from "react-toastify"
+import { useNavigate } from 'react-router-dom'
 
 export const Signup = () => {
+
+    const navigate = useNavigate()
 
     const [formData, setFormData] = useState({
         username: "",
@@ -69,6 +72,8 @@ const FormEvent = async (e) => {
 
             const response = await API.post("/auth/signup", formData);
             toast.success(response.data.message);
+            window.alert(response.data.message)
+            navigate("/login")
         } catch (err) {
            console.log("form err", err?.response?.data?.message);
            toast.error(err?.response?.data?.message || "Something went wrong");

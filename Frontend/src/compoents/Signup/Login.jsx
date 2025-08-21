@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import API from '../Api'
 import { toast,ToastContainer } from 'react-toastify'
 
 export const Login = () => {
+    const navigate = useNavigate()
     const [loginForm, setLoginForm] = useState({
         username : "",
         password : ""
@@ -52,6 +53,8 @@ export const Login = () => {
                 const response =await API.post("auth/login", loginForm)
                 const token = localStorage.setItem("token", response.data.token)
                 toast.success(response.data.message)
+                window.alert(response.data.message)
+                navigate("/")
             } 
             catch (err) {
                        console.log("form err", err?.response?.data?.message);

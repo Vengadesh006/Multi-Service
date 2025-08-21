@@ -14,34 +14,46 @@ import { ServiceDetails } from './compoents/admin/ServiceDetails'
 import { ServiceUpdate } from './compoents/admin/ServiceUpdate'
 import { AddToCard } from './compoents/Add/AddToCard'
 import { createContext } from 'react'
+import { ScrollUp } from './compoents/Nav/ScrollUp'
+import { Page } from './compoents/home/Page'
+import { ToastContainer } from 'react-toastify'
 
 export const AuthContext = createContext()
 
 function App() {
-  const userName = "vengadesh"
+
 
   return (
     <>
-      <AuthContext.Provider value={{userName}} >
 
-        <Nav />
-        <div style={{ marginTop: "100px" }} />
+ <ToastContainer position='bottom-right' />
+      <AuthContext.Provider >
+
+         <Nav />
+          <div style={{ marginTop: "100px" }} />
         <Routes>
+         
           <Route path='/' element={<Home />} />
           <Route path='/signup' element={<Signup />} />
           <Route path="/login" element={<Login />} />
-          <Route path='/:id' element={<Booking />} />
+          <Route path='book/:id' element={<Booking />} />
+          <Route path='/addcard' element={<AddToCard />} />
+
+          {/* admin page */}
           <Route path='/admin' element={<Admin />} />
           <Route path='/admin-user' element={<User />} />
           <Route path='/admin-provider' element={<Provider />} />
           <Route path='/admin-booking' element={<BookingDetails />} />
           <Route path='/admin-service' element={<ServiceDetails />} />
           <Route path='/admin-service/:id' element={<ServiceUpdate />} />
-          <Route path='/addcard' element={<AddToCard />} />
+          {/* page not found */}
+          <Route path='/*' element ={ <Page /> } />
         </Routes>
 
         <Footer />
       </AuthContext.Provider>
+      
+
     </>
   )
 }

@@ -2,10 +2,16 @@ import React, { createContext, useContext, useEffect, useState } from 'react'
 import logo from "../../assets/m1.png"
 import "./Nav.css"
 import { Home } from '../home/Home'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import API from '../Api'
+import { toast } from 'react-toastify'
+
+
+export const Context = createContext()
+
 
 export const Nav = () => {
+  const redirect = useNavigate()
 
   const [isAuthenticate, setIsAuthenticate] = useState(null)
 
@@ -30,9 +36,15 @@ export const Nav = () => {
     fetchData()
   }, [])
 
+  const LogoOut =() =>  {
+     toast.warning("refer the page")
+    localStorage.removeItem("token")
+   
+  }
+
   return (
 
-    <>
+    < >
 
       <nav className="navbar navbar-expand-lg shadow-lg fixed-top bg-body-tertiary">
         <div className="container">
@@ -62,13 +74,27 @@ export const Nav = () => {
                 <Link to="/addcard" className="nav-link">Cart</Link>
               </li>
             </ul>
-            <Link
-              to="/login"
-              className="btn mx-3"
-              style={{ background: "#f57c20", color: "white" }}
-            >
-              Login
-            </Link>
+
+            {
+              !isAuthenticate ? (<Link
+                to="/login"
+                className="btn mx-3"
+                style={{ background: "#f57c20", color: "white" }}
+              >
+                Login
+              </Link>)
+                :
+                (
+                  <button
+                    to="/login"
+                    className="btn mx-3"
+                    style={{ background: "#f57c20", color: "white" }}
+                    onClick={LogoOut}
+                  >
+                    Logout
+                  </button>
+                )
+            }
 
 
           </div>

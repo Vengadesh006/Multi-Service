@@ -2,10 +2,45 @@ import React, { useContext, useEffect, useState } from 'react'
 import API from '../Api'
 import axios from 'axios'
 import "./Card.css"
-import { Link } from 'react-router-dom'
-
+import { Link, useNavigate } from 'react-router-dom'
+import { AuthContext } from '../../App'
+import { toast } from 'react-toastify'
 
 export const Card = () => {
+
+    const [isAuthenticate, setIsAuthenticate] = useState(null)
+
+    const token = localStorage.getItem("token")
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const res = await API.get("/user", {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                })
+                setIsAuthenticate(res.data?.username)
+
+            }
+            catch (err) {
+                console.log(err?.response?.data?.message);
+
+            }
+        }
+        fetchData()
+    }, [])
+
+    const navigate = useNavigate();
+
+  const handleBook = (id) => {
+    if (isAuthenticate) {
+      navigate(`/book/${id}`); 
+    } else {
+      toast.warning("Please login first");
+    }
+  };
+
 
     const [serverData, setServerData] = useState([])
 
@@ -74,8 +109,13 @@ export const Card = () => {
                                             </p>
                                             <p className="card-text">${item.price}</p>
 
-                                            <Link to={`/${item._id}`} className='btn w-100 my-2' style={{ background: "#f57c20", color: "white" }} > BOOK </Link>
-
+                                            <button
+                                                onClick={() => handleBook(item._id)}
+                                                className="btn w-100 my-2"
+                                                style={{ background: "#f57c20", color: "white" }}
+                                            >
+                                                BOOK
+                                            </button>
                                         </div>
                                     </div>
 

@@ -91,7 +91,7 @@ export const Booking = () => {
         }
         catch (err) {
             console.log("form err", err?.response?.data?.message);
-            toast.error(err?.response?.data?.message || "Something went wrong");
+            toast.error(err?.response?.data?.message ||  "Something went wrong");
 
         }
     }
@@ -137,11 +137,11 @@ export const Booking = () => {
                     {provider.map((item, i) => (
                         <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12" key={item._id}>
                             <div
-                                className={`card h-100 shadow-sm rounded-4 ${activeIndex === i ? 'actives' : 'border-0'}`}
+                                className={`card h-100 shadow-sm rounded-4 ${activeIndex === i ? 'actives' : 'border-1'}`}
                                 style={{ cursor: "pointer" }}
                                 onClick={() => {
-                                    setActiveIndex(i);      // set active class
-                                    setProviderId(item?.userId?._id) // set selected providerId
+                                    setActiveIndex(i);      
+                                    setProviderId(item?.userId?._id) 
                                     console.log(item?.userId?._id);
                                     
                                 }}

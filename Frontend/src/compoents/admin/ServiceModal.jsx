@@ -8,6 +8,7 @@ export const ServiceModal = () => {
     name: "",
     desc: "",
     price: "",
+    category : "",
     image: null,
   })
 
@@ -25,6 +26,9 @@ export const ServiceModal = () => {
     }
     if (!serviceData.price) {
       err.price = "Price is required"
+    }
+    if (!serviceData.category) {
+      err.category = "category is required"
     }
     if (!serviceData.image) {
       err.image = "Image is required"
@@ -51,6 +55,7 @@ export const ServiceModal = () => {
         formData.append("name", serviceData.name)
         formData.append("desc", serviceData.desc)
         formData.append("price", serviceData.price)
+        formData.append("category", serviceData.category)
         formData.append("image", serviceData.image)
 
         const response =await API.post("/service", formData)
@@ -118,6 +123,19 @@ export const ServiceModal = () => {
                       onChange={inputEvent}
                     />
                     {error.price && <small className="text-danger">{error.price}</small>}
+                  </div>
+                  
+                  <div className="mb-3">
+                    <label className="form-label"> Category  </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="Category"
+                      name="category"
+                      value={serviceData.category}
+                      onChange={inputEvent}
+                    />
+                    {error.category && <small className="text-danger">{error.category}</small>}
                   </div>
 
                   <div className="mb-3">

@@ -32,7 +32,7 @@ export const User = () => {
                      <button className='btn btn-primary' data-bs-target="#exampleModal" data-bs-toggle="modal" >  <IoIosAddCircleOutline /> </button>
                 </div>
 
-                <table className='table rounded table-bordered table-striped table-hover text-center' >
+                <table className='table table-responsive small rounded table-bordered table-striped table-hover text-center' >
                     <thead className='' >
                         <tr className='align-middle'>
                             <th colSpan="col"> No </th>
